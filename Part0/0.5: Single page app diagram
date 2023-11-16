@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Note over Browser: User clicks SPA URL
+    Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+    Server->>Browser: spa
+    
+    Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    Server->>Browser: main.css
+    
+    Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    Server->>Browser: spa.js
+
+    Note over Browser: Browser executes JavaScript
+
+    Browser->>Server: GET request for notes data (JSON)
+    Server->>Browser: data.json
+
+    Note over Browser: JavaScript displays notes using DOM-API
