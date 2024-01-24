@@ -23,70 +23,76 @@
 //     </div>
 //   )
 // }
-const Header = () => {
-  const course = 'Half Stack application development'
+const Header = ({course}) => {
+
 
   return(
-    <div> 
       <h1>
         {course}
       </h1>
-    </div>
   )
 }
 
-// const Content = ({part, exercises}) => {
-//   return(
-//     <> 
-//       {part.map((parts, index) => (
-//         <p> 
-//             {part[index]} {exercises[index]}
-//         </p>
-//       ))}
-//     </>
-//   );
-// }
-
-const Content = ({part, exercises}) => {
+const Content = ({parts}) => {
   return(
     <> 
-        <p> 
-            {part[0]} {exercises[0]}
-        </p>
-        <p> 
-            {part[1]} {exercises[1]}
-        </p>
-        <p> 
-            {part[2]} {exercises[2]}
-        </p>
+        <p>{parts.name} {parts.exercises}</p> 
     </>
-  );
+  )
 }
 
 
-const Total = ({values}) => {
+const Total = ({exercises}) => {
   
-  let total = 0
-  {values.forEach(value => {total+=value}) }
+  
+  const sum = exercises.reduce((accumulator, exercises) => accumulator + exercises, 0);
   
   return(
-
-    <p> Number of exercises: {total}</p>
+    <> 
+    
+    <p> Number of exercises {sum}</p>
       
+    </>
   )
 }
 
 
 const App = () => {
   
-  const partName = ['Fundamentals of React', 'Using props to pass data', 'State of a component']
-  const exercises = [10, 7, 14]
+
+  // const parts = ['Fundamentals of React', 'Using props to pass data', 'State of a component']
+  // const exercises = [10, 7, 14]
+  // const part1 = 'Fundamentals of React'
+  // const exercises1 = 10
+  // const part2 = 'Using props to pass data'
+  // const exercises2 = 7
+  // const part3 = 'State of a component'
+  // const exercises3 = 14
+  const course = 'Half Stack application development'
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
+  const exercisesArray = [part1, part2, part3].map(({ exercises }) => exercises);
+
+console.log(exercisesArray)
+
 
   return (
     <>
-      <Header/>
-      <Content part = {partName} exercises = {exercises} />
-      <Total values = {exercises} />
+      <Header course = {course}/>
+      <Content parts = {part1} />
+      <Content parts = {part2} />
+      <Content parts = {part3} />
+      <Total exercises = {exercisesArray} />
     </>
   )
 }
